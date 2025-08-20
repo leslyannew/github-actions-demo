@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Office of Technology Services">
+    <meta name="description" content="An OTS Monolithic dotnet template used for OTS projects">
+    <link rel="icon" type="image/png" sizes="any" asp-append-version="true" href="~/img/favicon-32x32.png">
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+    <title>@ViewData["Title"] - github_actions_demo</title>
+</head>
+<body>
+    <a id="SkipToMain" class="skip-to-main" href="#main" tabindex="1">Skip to Main Content</a>
+    <header></header>
+    <div id="page-wrapper" class="page-wrapper agency-theme">
+        <partial name="_Sidebar" />
+        <div id="wrapper-main" class="wrapper-main">
+            <div class="page-content d-flex flex-column">
+                <partial name="_Topbar" />
+                <main id="main" class="main" role="main">
+                    <partial name="_Breadcrumbs" />
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+    <a id="ScrollToTop" href="#main" class="btn btn-accent btn-sm btn-scroll-top">
+        <span class="icon fas fa-arrow-up" aria-hidden="true"></span>
+        <span>Page top</span>
+    </a>
+    <environment exclude="Development">
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/sidenav.min.js" asp-append-version="true"></script>
+    </environment>
+    <environment include="Development">
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/sidenav.js" asp-append-version="true"></script>
+    </environment>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

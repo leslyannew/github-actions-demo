@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Office of Technology Services">
+    <meta name="description" content="An OTS Monolithic dotnet template used for OTS projects">
+    <link rel="icon" type="image/png" sizes="any" asp-append-version="true" href="~/img/favicon-32x32.png">
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+    <title>@ViewData["Title"] - github_actions_demo</title>
+</head>
+<body class="@ViewData["PageClass"]">
+    <partial name="_Topbar" />
+    <main id="main" class="main" role="main">
+        @RenderBody()
+    </main>
+    <environment exclude="Development">
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/sidenav.min.js" asp-append-version="true"></script>
+    </environment>
+    <environment include="Development">
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/sidenav.js" asp-append-version="true"></script>
+    </environment>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

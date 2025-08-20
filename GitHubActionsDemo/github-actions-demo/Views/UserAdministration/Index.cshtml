@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "User Administration";
+}
+
+<div class="page-title">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="page-title-text">
+                    <span>@ViewData["Title"]</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row g-2 mb-5" role="list">
+        <div class="col-12 col-md-6 col-lg-4" role="listitem">
+            <div class="card mb-0 shadow-none h-100">
+                <div class="card-body">
+                    <img alt="" src="" aria-hidden="true">
+                    <a class="stretched-link area-page-link" asp-controller="UserAdministration" asp-action="Roles">
+                        <span class="icon fas fa-arrow-right me-2" aria-hidden="true"></span>
+                        <span>Roles</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4" role="listitem">
+            <div class="card mb-0 shadow-none h-100">
+                <div class="card-body">
+                    <img alt="" src="" aria-hidden="true">
+                    <a class="stretched-link area-page-link" asp-controller="UserAdministration" asp-action="Users">
+                        <span class="icon fas fa-arrow-right me-2" aria-hidden="true"></span>
+                        <span>Users</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

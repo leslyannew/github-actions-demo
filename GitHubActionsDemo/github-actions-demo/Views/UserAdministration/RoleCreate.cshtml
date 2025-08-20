@@ -1,0 +1,48 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Create Role";
+}
+
+<div class="page-title">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="page-title-text">
+                    <span>@ViewData["Title"]</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<form method="post" asp-controller="UserAdministration" asp-action="RoleCreate">
+    <div class="content-container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="h3" id="addToUser">Create a Role</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="form-group">
+                        <label class="label form-label" for="name">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn-container">
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a class="btn btn-link" asp-controller="UserAdministration" asp-action="Roles">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>

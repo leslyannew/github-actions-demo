@@ -1,0 +1,56 @@
+﻿@model IEnumerable<System.Security.Claims.Claim>
+@{
+    ViewData["Title"] = "My Claims";
+}
+
+<div class="page-title">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="page-title-text">
+                    <span>@ViewData["Title"]</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <caption class="visually-hidden">This table contains a list of the current user's claims.</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col" id="claimType">
+                                    <a href="javascript://" role="button">
+                                        <span class="icon fas fa-sort" aria-hidden="true"></span>
+                                        <span>Claim Type</span>
+                                        <span class="visually-hidden">Sort the table by the data of this claim type column</span>
+                                    </a>
+                                </th>
+                                <th scope="col" id="claimValue">
+                                    <a href="javascript://" role="button">
+                                        <span class="icon fas fa-sort" aria-hidden="true"></span>
+                                        <span>Claim Value</span>
+                                        <span class="visually-hidden">Sort the table by the data of this claim value column</span>
+                                    </a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var claim in Model)
+                            {
+                                <tr>
+                                    <td headers="claimType">@claim.Type</td>
+                                    <td headers="claimValue">@claim.Value</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

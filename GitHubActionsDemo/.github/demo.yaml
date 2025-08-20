@@ -1,0 +1,16 @@
+name: demo
+
+on:
+  #event
+
+jobs:
+  #job id
+  job1:
+    runs-on: #runner here
+    steps:
+    - name: Test
+      run: echo hello!
+
+    - name: Checkout
+      uses: actions/checkout@v4
+

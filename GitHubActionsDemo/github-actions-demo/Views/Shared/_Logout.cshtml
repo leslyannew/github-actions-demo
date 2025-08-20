@@ -1,0 +1,21 @@
+﻿<div class="sidebar-header border-bottom">
+    @if (Environment.IsDevelopment())
+    {
+        <p>
+            <a class="text-white" asp-controller="Account" asp-action="UserClaims">
+                <span class="fas fa-user"></span>
+                <span>@User?.Identity?.Name</span>
+            </a>
+        </p>
+    }
+    else
+    {
+        <p class="text-white">
+            <span class="fas fa-user"></span>
+            <span>@User?.Identity?.Name</span>
+        </p>
+    }
+    <form class="d-grid gap-2" asp-controller="Account" asp-action="Logout" method="post">
+        <button type="submit" class="btn btn-secondary" name="provider" value="Saml2">Logout</button>
+    </form>
+</div>

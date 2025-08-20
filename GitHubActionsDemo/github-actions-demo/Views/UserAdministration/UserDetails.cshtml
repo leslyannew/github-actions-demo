@@ -1,0 +1,85 @@
+﻿@model github_actions_demo.Features.UserAdministration.Dto.UserDetails
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<div class="page-title">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="page-title-text">
+                    <span>@ViewData["Title"]</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<form method="get" asp-controller="UserAdministration" asp-action="UserRolesUpdate" asp-route-id="@Model.User.Id">
+    <div class="content-container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="h3" id="userDetails">Details</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label>First Name</label>
+                    <p>@Model.User.FirstName</p>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label>Last Name</label>
+                    <p>@Model.User.LastName</p>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label>Email</label>
+                    <p>@Model.User.Email</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label>Last Login</label>
+                    <p>@Model.User.LastLoginTime</p>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label>Is Enabled</label>
+                    <p>@Model.User.IsEnabled</p>
+                </div>
+            </div>
+            <hr class="minor my-6" />
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="h3" id="userRoles">Roles</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4">
+                    @if (Model.MemberRoles.Count() == 0)
+                    {
+                        <p class="mb-0">User is not member to any roles.</p>
+                    }
+                    else
+                    {
+                        <ul class="list-group">
+                            @foreach (var role in Model.MemberRoles)
+                            {
+                                <li class="list-group-item">@role</li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn-container">
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-link" asp-controller="UserAdministration" asp-action="Users">
+                    <span class="fas fa-arrow-left"></span>
+                    <span>Back</span>
+                </a>
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </div>
+    </div>
+</form>

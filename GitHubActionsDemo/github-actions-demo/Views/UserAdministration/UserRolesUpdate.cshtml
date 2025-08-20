@@ -1,0 +1,160 @@
+﻿@model github_actions_demo.Features.UserAdministration.Dto.UserRoles
+@{
+    ViewData["Title"] = "Update Roles for " + @Model.User.UserName;
+}
+
+<div class="page-title">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="page-title-text">
+                    <span>@ViewData["Title"]</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<form method="post" asp-controller="UserAdministration" asp-action="UserRolesUpdate">
+    <div class="content-container">
+        <div class="container-fluid">
+            <input type="hidden" name="userName" value="@Model.User.UserName" />
+            <input type="hidden" name="userId" value="@Model.User.Id" />
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="h3" id="enableUser">Enable User</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox form-check">
+                            <input type="checkbox" class="custom-control-input form-check-input" id="enableUserCheckbox" name="IsEnabled" checked="@Model.User.IsEnabled" value="true">
+                            <label class="custom-control-label form-check-label" for="enableUserCheckbox">Is Enabled</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="minor my-6" />
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="h3" id="addToUser">Add Roles</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <caption class="visually-hidden">This table contains a list of all roles that can be added to a user.</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col" id="addRoleName">
+                                        <a href="javascript://" role="button">
+                                            <span class="icon fas fa-sort" aria-hidden="true"></span>
+                                            <span>Name</span>
+                                            <span class="visually-hidden">Sort the table by the data of this role name column</span>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.NonMemberRoles.Count() == 0)
+                                {
+                                    <tr>
+                                        <td headers="addRoleName">
+                                            <div class="form-group mb-0">
+                                                <p class="mb-0">User is member to all roles.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @foreach (var role in Model.NonMemberRoles)
+                                    {
+                                        <tr>
+                                            <td headers="addRoleName">
+                                                <div class="form-group mb-0">
+                                                    <div class="custom-control custom-checkbox form-check">
+                                                        <input type="checkbox" class="custom-control-input form-check-input" id="addRoleCheckbox" name="AddIds" value="@role.Id">
+                                                        <label class="custom-control-label form-check-label" for="addRoleCheckbox">@role.Name</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr class="minor my-6" />
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="h3" id="removeFromUser">Remove Roles</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <caption class="visually-hidden">This table contains a list of all roles that can be removed from a user.</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col" id="removeRoleNames">
+                                        <a href="javascript://" role="button">
+                                            <span class="icon fas fa-sort" aria-hidden="true"></span>
+                                            <span>Name</span>
+                                            <span class="visually-hidden">Sort the table by the data of this role name column</span>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.MemberRoles.Count() == 0)
+                                {
+                                    <tr>
+                                        <td headers="removeRoleNames">
+                                            <div class="form-group mb-0">
+                                                <p class="mb-0">User is not a member to any roles.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @foreach (var role in Model.MemberRoles)
+                                    {
+                                        <tr>
+                                            <td headers="removeRoleNames">
+                                                <div class="form-group mb-0">
+                                                    <div class="custom-control custom-checkbox form-check">
+                                                        <input type="checkbox" class="custom-control-input form-check-input" id="removeRoleCheckbox" name="DeleteIds" value="@role.Id">
+                                                        <label class="custom-control-label form-check-label" for="removeRoleCheckbox">@role.Name</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn-container">
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a role="button" class="btn btn-link" asp-controller="UserAdministration" asp-action="Users">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>

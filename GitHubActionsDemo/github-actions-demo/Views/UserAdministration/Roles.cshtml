@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<div class="page-title">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 d-lg-flex justify-content-lg-between align-items-center">
+                <div class="mb-2 mb-lg-0">
+                    <h1 class="page-title-text">
+                        <span>@ViewData["Title"]</span>
+                    </h1>
+                </div>
+                <div class="mb-lg-0">
+                    <a class="btn btn-primary btn-shadow" asp-controller="UserAdministration" asp-action="RoleCreate">Create a Role</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="h3" id="allRoles">All Roles</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <caption class="visually-hidden">This table contains a list of all roles.</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col" id="roleName">
+                                    <a href="javascript://" role="button">
+                                        <span class="icon fas fa-sort" aria-hidden="true"></span>
+                                        <span>Name</span>
+                                        <span class="visually-hidden">Sort the table by the data of this role name column</span>
+                                    </a>
+                                </th>
+                                <th scope="col" id="roleId">
+                                    <a href="javascript://" role="button">
+                                        <span class="icon fas fa-sort" aria-hidden="true"></span>
+                                        <span>Users</span>
+                                        <span class="visually-hidden">Sort the table by the data of this users column</span>
+                                    </a>
+                                </th>
+                                <th scope="col" id="details">
+                                    <span class="visually-hidden">Details</span>
+                                </th>
+                                <th scope="col" id="update">
+                                    <span class="visually-hidden">Update</span>
+                                </th>
+                                <th scope="col" id="delete">
+                                    <span class="visually-hidden">Delete</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var (role, index) in Model.Select((role, index) => (role, index)))
+                            {
+                                <tr>
+                                    <td class="align-middle" headers="roleName">@role.Name</td>
+                                    <td class="align-middle" headers="roleId" role-id="@role.Id"></td>
+                                    <td class="align-middle" headers="details">
+                                        <a class="btn btn-sm btn-secondary float-end" asp-controller="UserAdministration" asp-action="RoleUsersById" asp-route-id="@role.Id">Details</a>
+                                    </td>
+                                    <td class="align-middle" headers="update">
+                                        <a class="btn btn-sm btn-primary float-end" asp-controller="UserAdministration" asp-action="RoleUsersUpdate" asp-route-id="@role.Id">Update</a>
+                                    </td>
+                                    <td class="align-middle" headers="delete">
+                                        <form asp-action="RoleDelete" asp-controller="UserAdministration" asp-route-id="@role.Id" method="post">
+                                            <button type="button" class="btn btn-sm btn-danger float-end" data-toggle="modal" data-target="#deleteRoleModal@(index)" data-bs-toggle="modal" data-bs-target="#deleteRoleModal@(index)">
+                                                Delete
+                                            </button>
+                                            <div class="modal fade" id="deleteRoleModal@(index)" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="modalTitle@(index)" aria-hidden="true" aria-describedby="modalTitle@(index)">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title" id="modalTitle@(index)">
+                                                                <span class="icon fas fa-bell text-primary-10" aria-hidden="true"></span>
+                                                                <span>Delete Role</span>
+                                                            </h1>
+                                                            <button type="button" class="close btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p class="mb-0">Are you sure you want to Delete this Role?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-ui" id="modalClose" data-dismiss="modal" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-danger" id="modalDelete">Yes, Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,140 @@
+﻿@model github_actions_demo.Features.UserAdministration.Dto.RoleUsers
+@{
+    ViewData["Title"] = "Update Users for " + @Model.Role.Name;
+}
+
+<div class="page-title">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="page-title-text">
+                    <span>@ViewData["Title"]</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<form method="post" asp-controller="UserAdministration" asp-action="RoleUsersUpdate">
+    <div class="content-container">
+        <div class="container-fluid">
+            <input type="hidden" name="roleName" value="@Model.Role.Name" />
+            <input type="hidden" name="roleId" value="@Model.Role.Id" />
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="h3" id="addToUser">Add Users</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <caption class="visually-hidden">This table contains a list of all users that can be added to a role.</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col" id="addUserName">
+                                        <a href="javascript://" role="button">
+                                            <span class="icon fas fa-sort" aria-hidden="true"></span>
+                                            <span>Name</span>
+                                            <span class="visually-hidden">Sort the table by the data of this user name column</span>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.NonMembers.Count() == 0)
+                                {
+                                    <tr>
+                                        <td class="align-middle" headers="addUserName">
+                                            <p class="mb-0">All users are members.</p>
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @foreach (var user in Model.NonMembers)
+                                    {
+                                        <tr>
+                                            <td class="align-middle" headers="addUserName">
+                                                <div class="form-group mb-0">
+                                                    <div class="custom-control custom-checkbox form-check">
+                                                        <input type="checkbox" class="custom-control-input form-check-input" id="addUserCheckbox" name="AddIds" value="@user.Id">
+                                                        <label class="custom-control-label form-check-label" for="addUserCheckbox">@user.UserName</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr class="minor my-6" />
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="h3" id="removeFromUser">Remove Users</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <caption class="visually-hidden">This table contains a list of all users that can be removed from a role.</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col" id="removeUserNames">
+                                        <a href="javascript://" role="button">
+                                            <span class="icon fas fa-sort" aria-hidden="true"></span>
+                                            <span>Name</span>
+                                            <span class="visually-hidden">Sort the table by the data of this user name column</span>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Members.Count() == 0)
+                                {
+                                    <tr>
+                                        <td class="align-middle" headers="removeUserNames">
+                                            <p class="mb-0">No users are members.</p>
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @foreach (var user in Model.Members)
+                                    {
+                                        <tr>
+                                            <td class="align-middle" headers="removeUserNames">
+                                                <div class="form-group mb-0">
+                                                    <div class="custom-control custom-checkbox form-check">
+                                                        <input type="checkbox" class="custom-control-input form-check-input" id="removeUserCheckbox" name="DeleteIds" value="@user.Id">
+                                                        <label class="custom-control-label form-check-label" for="removeUserCheckbox">@user.UserName</label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn-container">
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a class="btn btn-link" asp-controller="UserAdministration" asp-action="Roles">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>

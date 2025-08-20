@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = "_SimpleLayout";
+}
+
+<div class="hero-dual-pane" style="background-image: url('/img/pexels-photo-275030.jpeg');">
+    <div class="overlay overlay-left"></div>
+    <div class="overlay overlay-right"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-7 col-lg-6">
+                <img src="~/img/ots_128x128.png" alt="Office of Technology Services" class="logo">
+                <h1 class="hero-big-text">github_actions_demo</h1>
+                <p class="hero-lead-text">OTS Dotnet Template MVC Monolithic</p>
+                <p class="hero-small-text">Get started in creating modern, consistent digital products for Louisiana.</p>
+            </div>
+            <div class="col-10 col-md-7 col-lg-6 d-flex flex-column justify-content-center align-items-center">
+                <form asp-controller="Account" asp-action="ExternalLogin" method="post">
+                    <button class="btn btn-accent btn-lg" name="provider" value="Saml2">
+                        <span>Sign In</span>
+                        <span class="icon fas fa-arrow-right ms-1" aria-hidden="true"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
