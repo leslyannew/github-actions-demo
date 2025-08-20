@@ -1,7 +1,7 @@
 name: demo
 
 on:
-  #event
+  push:
 
 jobs:
   #job id
