@@ -1,16 +1,9 @@
-name: demo
-
-on:
-  push:
+on: 
+    push:
 
 jobs:
-  #job id
-  job1:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Test
-      run: echo hello!
-
-    - name: Checkout
-      uses: actions/checkout@v4
+    job1:
+        runs-on: ubuntu-latest
+        steps: 
+            - run: echo hello!
 
