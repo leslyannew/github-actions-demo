@@ -1,24 +1,2 @@
-name: Demo Workflow
 
-on: 
-    push:
-        branches: [main]
-
-jobs: 
-    hello:
-        name: Hello!
-        runs-on: ubuntu-latest
-        steps: 
-            - name: Say Hello
-              run: echo hello!!!
-    checkout:
-        name: Checkout Code
-        runs-on: ubuntu-latest
-        steps:
-            - name: View Files
-              run: ls -a
-            - name: Checkout
-              uses: actions/checkout@v4
-            - name: View Files
-              run: ls -a 
         
