@@ -6,7 +6,7 @@ on:
 jobs:
   #job id
   job1:
-    runs-on: #runner here
+    runs-on: ubuntu-latest
     steps:
     - name: Test
       run: echo hello!
