@@ -1,12 +1,21 @@
+name: Demo Workflow
+
 on: 
-    #event
     push:
 
 jobs:
-    # job id
-    job1:
-        # runner
+    hello:
+        name: Say Hello
         runs-on: ubuntu-latest
         steps: 
-            - run: echo hello!! this is a demo
+            - run: echo hello! this is a demo
+    checkout:
+        name: Checkout Code
+        runs-on: ubuntu-latest
+        steps:
+            - run: ls
+            - uses: actions/checkout@v4
+            - run: ls
+
+        
 
