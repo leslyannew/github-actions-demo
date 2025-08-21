@@ -7,6 +7,6 @@ jobs:
     job1:
         # runner
         runs-on: ubuntu-latest
-    steps: 
+        steps: 
             - run: echo hello!! this is a demo
 
