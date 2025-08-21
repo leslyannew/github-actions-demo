@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: Build Project
     runs-on: ubuntu-latest
     env:
       BUILD_CONFIG: Release      
