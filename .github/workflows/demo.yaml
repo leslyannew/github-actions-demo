@@ -1,9 +1,12 @@
 on: 
+    #event
     push:
 
 jobs:
+    # job id
     job1:
+        # runner
         runs-on: ubuntu-latest
-        steps: 
-            - run: echo hello!
+    steps: 
+            - run: echo hello!! this is a demo
 
